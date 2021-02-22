@@ -1,4 +1,7 @@
-package by.it.lomazki.roulette.trySecond;
+package by.it.lomazki.roulette.trySecond.combination;
+
+import by.it.lomazki.roulette.trySecond.Combinations;
+import by.it.lomazki.roulette.trySecond.Field;
 
 public class Red extends Combinations implements Field {
 
