@@ -4,24 +4,46 @@ import java.util.Arrays;
 
 public class Combinations {
 
-    String name;
-    Integer[] value;
+    static double ONE_37 = 0.027027027027;
 
-    public Combinations(String name, Integer[] value) {
-        this.name = name;
+    private String name;
+    private Integer[] value;
+    private int counter;
+    private int limitPoint;
+
+    public static boolean isInclude(Integer[] combination, Integer number) {
+        return Arrays.asList(combination).contains(number);
+    }
+
+    public static double mathExpectation(int counter, Integer[] value) {
+        return ((1 - Math.pow((ONE_37 * value.length), (counter + 1))) * 100);
+    }
+
+    public void MathAnalysis(int dropOut) {
+        if (!isInclude(this.value, dropOut)) {
+            this.counter++;
+
+            if (this.counter > limitPoint) {
+                System.out.print(getName() + " не повторялось " + this.counter + " раз ");
+                System.out.println("MathExpectation = " + mathExpectation(this.counter, this.value));
+            }
+        } else this.counter = 0;
+    }
+
+    public void setLimitPoint(int limitPoint) {
+        this.limitPoint = limitPoint;
+    }
+
+    public void setValue(Integer[] value) {
         this.value = value;
+    }
+
+    public Combinations(String name) {
+        this.name = name;
     }
 
     public String getName() {
         return name;
-    }
-
-    public static boolean IsInclude(Integer[] combination, Integer number) {
-        return (Arrays.asList(combination).contains(Integer.valueOf(number)));
-    }
-
-    public static double MathExpectation(int counter, int lengthCombination) {
-        return ((1 - Math.pow((0.027027027027*lengthCombination), (counter + 1))) * 100);
     }
 }
 
